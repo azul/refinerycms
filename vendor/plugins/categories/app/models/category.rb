@@ -1,7 +1,7 @@
 class Category < ActiveRecord::Base
 
   acts_as_indexed :fields => [:title, :description]
-  acts_as_tree
+  acts_as_nested_set
 
   validates_presence_of :title
   validates_uniqueness_of :title
@@ -29,9 +29,9 @@ class Category < ActiveRecord::Base
   end
 
   def parent_shop_consistency
-    self.parent.nil? || (self.shop_id == parent.shop_id) 
+    self.parent.nil? || (self.shop_id == parent.shop_id)
   end
-     
+
   def children_shop_consistency
     if children.any?
       children.each do |child|
