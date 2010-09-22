@@ -1,7 +1,7 @@
 Refinery::Application.routes.draw do
-  resources :products
+  resources :products, :only => [:index, :show]
 
-  scope(:path => 'refinery', :as => 'admin', :module => 'admin') do
+  namespace :admin do
     resources :products do
       collection do
         post :update_positions
