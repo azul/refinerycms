@@ -21,9 +21,12 @@ ActiveRecord::Schema.define(:version => 20100921160027) do
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "lft"
+    t.integer  "rgt"
   end
 
   add_index "categories", ["id"], :name => "index_categories_on_id"
+  add_index "categories", ["lft"], :name => "index_categories_on_lft"
 
   create_table "category_products", :force => true do |t|
     t.integer "category_id"
@@ -202,7 +205,7 @@ ActiveRecord::Schema.define(:version => 20100921160027) do
     t.integer "position"
   end
 
-  add_index "user_plugins", ["name"], :name => "index_user_plugins_on_name"
+  add_index "user_plugins", ["name"], :name => "index_user_plugins_on_title"
   add_index "user_plugins", ["user_id", "name"], :name => "index_unique_user_plugins", :unique => true
 
   create_table "users", :force => true do |t|

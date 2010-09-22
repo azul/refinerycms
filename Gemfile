@@ -56,7 +56,6 @@ gem 'rmagick',                  '~> 2.12.0', rmagick_options
 gem 'haml',             '>= 3.0.0'
 gem 'mongrel',          '>= 1.1.5'
 gem 'is_taggable',      '>= 0.1.0'
-gem 'acts_as_tree'
 # END REFINERY CMS ============================================================
 
 # REFINERY CMS DEVELOPMENT ====================================================
