@@ -1,7 +1,11 @@
 Refinery::Application.routes.draw do
 
   resources :shops, :only => [:index, :show] do
-    resources :products, :only => :index
+    resources :products, :only => [:index, :new] do
+      collection do
+        post :update_positions
+      end
+    end
     resources :categories, :only => [:index, :show]
   end
 
@@ -11,7 +15,6 @@ Refinery::Application.routes.draw do
         post :update_positions
       end
       resources :categories, :only => [:index, :new, :show]
-      resources :products, :only => [:index, :new]
     end
   end
 end

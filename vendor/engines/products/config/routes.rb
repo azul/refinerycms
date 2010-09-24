@@ -1,5 +1,6 @@
 Refinery::Application.routes.draw do
-  resources :products, :only => [:index, :show]
+
+  resources :products, :except => [:new]
 
   namespace :admin do
     resources :products do
