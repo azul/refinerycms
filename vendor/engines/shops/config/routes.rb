@@ -1,7 +1,7 @@
 Refinery::Application.routes.draw do
 
   resources :shops, :only => [:index, :show] do
-    resources :products, :only => [:index, :new] do
+    resources :products, :only => [:index, :new, :create] do
       collection do
         post :update_positions
       end

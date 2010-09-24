@@ -7,4 +7,11 @@ class Admin::BaseController < Refinery::AdminBaseController
   require 'owner_limited'
   include ::OwnerLimited
 
+  before_filter :store_current_shop!
+
+  private
+    def store_current_shop!
+      session[:shop] = @shop
+    end
+
 end

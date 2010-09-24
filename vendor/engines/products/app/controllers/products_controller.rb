@@ -1,7 +1,14 @@
 class ProductsController < ApplicationController
 
-  before_filter :find_all_products
+  before_filter :find_shop, :only => [:new, :index]
+  before_filter :find_all_products, :only => :index
   before_filter :find_page
+
+  crudify :product
+
+  def new
+    @product = Product.new :shop => @shop
+  end
 
   def index
     # you can use meta fields from your model instead (e.g. browser_title)
@@ -23,9 +30,15 @@ class ProductsController < ApplicationController
 
 protected
 
-  def find_all_products
+
+  def find_shop
     if params[:shop_id]
       @shop = Shop.find(params[:shop_id])
+    end
+  end
+
+  def find_all_products
+    if @shop
       @products = @shop.products.find(:all, :order => "position ASC")
     else
       @products = Product.find(:all, :order => "position ASC")
