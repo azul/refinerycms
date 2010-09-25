@@ -38,8 +38,13 @@ class Product < ActiveRecord::Base
     :select => "products.*, count(products.id) AS similarity",
     :conditions => "t2.tag_id=t1.tag_id "
      }}
-  
 
+
+  def editable_by?(user)
+    shop.user_id == user.id
+  end
+
+  private
   def categories_shop_consistency
     self.categories.each do |c|
       return false if self.shop_id != c.shop_id

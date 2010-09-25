@@ -28,6 +28,12 @@ class Category < ActiveRecord::Base
     "#{"--" * self.ancestors.size} #{self.title}".chomp
   end
 
+  def editable_by?(user)
+    shop.user_id == user.id
+  end
+
+  private
+
   def parent_shop_consistency
     self.parent.nil? || (self.shop_id == parent.shop_id)
   end

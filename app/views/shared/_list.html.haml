@@ -1,0 +1,10 @@
+- list = local_assigns[:collection] || object.send(attribute)
+- if list and list.all.any?
+  %div{:class => attribute}
+    %h3= object.class.human_attribute_name attribute
+    %ul{:class => attribute}
+      = render list
+- if local_assigns[:add] and object.editable_by? current_user
+  %div{:class => [attribute, :add]}
+    = link_to object.class.human_attribute_name(attribute),
+      polymorphic_url([object, attribute.to_s.singularize], :action => :new)

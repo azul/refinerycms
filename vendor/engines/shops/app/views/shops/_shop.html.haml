@@ -1,10 +1,9 @@
 %li
-  %h3= t('product.shop')
+  %h3= t('shop')
   = link_to shop.title, shop
   .vendor
-    = t('product.vendor')
+    = t('shop.vendor')
     %br
     = image_fu shop.user.image, :preview
     = shop.user.name
-  %h3= t('more_products')
-  = render shop.products.randomize.limit(3).without(@product)
+  = list shop, :products, :collection => shop.products.randomize.limit(2).without(@product)
